@@ -7,7 +7,7 @@ PASSWORD = "secret_sauce"
 
 
 def test_login_page_is_displayed(page: Page) -> None:
-    page.goto(BASE_URL)
+    page.goto(BASE_URL, wait_until="domcontentloaded")
 
     expect(page.locator('[data-test="username"]')).to_be_visible()
     expect(page.locator('[data-test="password"]')).to_be_visible()
@@ -15,7 +15,7 @@ def test_login_page_is_displayed(page: Page) -> None:
 
 
 def log_in(page: Page, password: str = PASSWORD) -> None:
-    page.goto(BASE_URL)
+    page.goto(BASE_URL, wait_until="domcontentloaded")
     page.locator('[data-test="username"]').fill(USERNAME)
     page.locator('[data-test="password"]').fill(password)
     page.locator('[data-test="login-button"]').click()
